@@ -1,5 +1,5 @@
 /*
- * This is a Server Socket listening on port 4812 
+ * This is a Server Socket listening on port 1776 ( I call it the Freedom Port) 
  * Once a connection is heard from a client, a socket opened and accepted.
  * from the socket instance that is created, there are a few properties available.
  * The .getInetAdress() from the socket returns an InetAddress instance of the client on the
@@ -34,7 +34,7 @@ public class ServerSock {
         
         String messageIn = null;
         
-        ServerSocket serverSocket = new ServerSocket(4812); 
+        ServerSocket serverSocket = new ServerSocket(1776); 
         Socket socket = serverSocket.accept();
         // Information Regarding the Connection.
         InetAddress INA = socket.getInetAddress(); 

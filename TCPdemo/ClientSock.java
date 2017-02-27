@@ -1,6 +1,6 @@
 /*
  *This is a client socket class that connects to the server socket
- * on a pre-specified of 4812, supplying a name of 'localhost'
+ * on a pre-specified of 1776 ( I call it the Freedom Port), supplying a name of 'localhost'
  * once the socket is accepted by the server a PrintStream object is created with
  * the socket.getOutputStream() as a parameter, following this creation, a message is sent
  * to the server. 
@@ -33,7 +33,7 @@ public class ClientSock {
     
    public void run() throws Exception{
        String messageIn = null;
-       Socket socket = new Socket("localhost", 4812);
+       Socket socket = new Socket("localhost", 1776);
        PrintStream pStream = new PrintStream(socket.getOutputStream());
        pStream.println("I NEED TO CONNECT NOWWWWW!!!!");
        
