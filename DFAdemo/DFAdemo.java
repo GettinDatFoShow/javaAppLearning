@@ -5,13 +5,14 @@
 package dfademo;
 
 import java.util.Scanner;
-
+import java.io.IOException;
 /**
  *
  * @author Robert Morris
  * This is a program to test out a simple DFA machine. It excepts a input strings 
  * from the user and checks them againts the defined language of L={a^n b:n>=0}
- * 
+ * Since this program is designed to test only strings with 'a' and 'b' in them, 
+ * it throws an IOException if the user inputs strings containing any other characters.
  */
 public class DFAdemo {
 
@@ -20,7 +21,7 @@ public class DFAdemo {
      */
     public static String input;
     
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws Exception {
         
         Scanner  scanner = new Scanner( System.in );
         message( 1 );
@@ -59,10 +60,10 @@ public class DFAdemo {
         System.out.println( "Thank you testing this DFA, designed by Rober Morris." );
     }
     
-    public static boolean dfaMachineTest( String inString ){ // machine states test
+    public static boolean dfaMachineTest( String inString ) throws IOException, Exception { // machine states test
         /* excepts a user strings, converts it to a character array, checks the characters
             against the definded language and returns true or false if the langauge is excepted */
-        
+        Exception IOException = null;
         char[] string = inString.toCharArray();
         int loopLen = string.length;
         char letter;
@@ -78,8 +79,11 @@ public class DFAdemo {
                     state = 0; // 'a' is encountered
                 }
                 
+                else if( letter == 'b' ){
+                    break; // machine only excepts where the first letter is an 'a'
+                }
                 else{
-                    break; // anything other than an 'a' is encountered
+                    throw IOException;// anything other than an 'a' or 'b' is encountered
                 }
             }
             
@@ -89,9 +93,15 @@ public class DFAdemo {
                     state = 1; // a 'b' is encountered
                 }
                 
-                else{
-                    // remain in state 0 ( should be another 'a')
+                else if(letter == 'a'){
+                    // remain in state 0 
                 }
+                
+                else{
+
+                    throw IOException;// anything other than an 'a' or 'b' is encountered
+                }
+                
             }
             
             else if( state == 1 ){ // FINAL STATE q1 ( Excepted Strings End Here)
@@ -104,10 +114,25 @@ public class DFAdemo {
                     state = 2; // a 'b' is encountered
                 }
                 
+                else{
+                
+                    throw IOException;// anything other than an 'a' or 'b' is encountered
+                }
+                
             }
             
             else if( state == 2 ){ // STATE q2
                 // There is no way back to state 1 
+                if( letter == 'a' ){
+                    // pass
+                }
+                    
+                else if( letter == 'b' ){
+                    // pass
+                }
+                else{
+                    throw IOException;// anything other than an 'a' or 'b' is encountered
+                }
             }
         }
         return state == 1; // return true if string is excepted 
