@@ -1,8 +1,4 @@
-/*
- * 
- */
 
-package dfademo;
 
 import java.util.Scanner;
 import java.io.IOException;
